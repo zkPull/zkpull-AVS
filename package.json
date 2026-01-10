@@ -1,0 +1,28 @@
+{
+  "name": "@zkpull/operator-bot",
+  "version": "1.0.0",
+  "description": "zkTLS Operator Bot for zkPull AVS",
+  "main": "operator.js",
+  "scripts": {
+    "start": "node operator.js",
+    "register": "node register.js",
+    "deregister": "node deregister.js"
+  },
+  "keywords": [
+    "zkpull",
+    "zktls",
+    "avs",
+    "operator",
+    "ethereum"
+  ],
+  "author": "zkPull Team",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
