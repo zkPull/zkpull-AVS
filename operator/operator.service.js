@@ -73,10 +73,25 @@ class OperatorService {
         }`
       );
 
-      const { isValid, zkProof } = await this.validator.verifyPR(
-        task.prLink,
-        accessToken
-      );
+      let isValid = false;
+      let zkProof = "0x";
+
+      try {
+        const verificationResult = await this.validator.verifyPR(
+          task.prLink,
+          accessToken
+        );
+        isValid = verificationResult.isValid;
+        zkProof = verificationResult.zkProof;
+      } catch (verificationError) {
+        console.error(
+          `   ⚠️  Verification failed: ${verificationError.message}`
+        );
+        console.log(`   🚫 Submitting rejection to prevent retry loop...`);
+
+        zkProof = this._createErrorProof(verificationError);
+        isValid = false;
+      }
 
       console.log(
         `   Validation Result: ${isValid ? "✅ VALID" : "❌ INVALID"}`
@@ -87,7 +102,7 @@ class OperatorService {
       console.log(`✅ Task #${taskId} completed`);
     } catch (error) {
       console.error(`❌ Error processing task #${taskId}:`, error.message);
-      throw error;
+      console.error(`   Task will remain in queue and be retried later.`);
     } finally {
       this.processingTasks.delete(taskIdStr);
     }
@@ -223,6 +238,24 @@ class OperatorService {
    */
   _sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  /**
+   * Create error proof for failed verification
+   * This allows the task to be rejected rather than retried infinitely
+   */
+  _createErrorProof(error) {
+    const errorData = {
+      error: true,
+      message: error.message,
+      timestamp: Date.now(),
+      operator: this.operatorAddress,
+      reason: "verification_failed",
+    };
+
+    return ethers.utils.hexlify(
+      ethers.utils.toUtf8Bytes(JSON.stringify(errorData))
+    );
   }
 }
 
