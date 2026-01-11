@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * zkTLS Operator Bot
- * Entry point - delegates to modular implementation
+ * zkTLS Operator Bot Entry Point
+ * Automated validator for zkPull protocol using AVS
  */
 
-const { ZKTLSOperatorBot } = require("./operator/operator.controller");
+const { ZKTLSOperatorBot } = require("./operator.controller");
 
 async function main() {
   const bot = new ZKTLSOperatorBot();
