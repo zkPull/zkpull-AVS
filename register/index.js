@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 /**
+ * Operator Registration Entry Point
  * Register as zkTLS Operator
- * Entry point - delegates to modular implementation
  */
 
-const { RegisterController } = require("./register/register.controller");
+const { RegisterController } = require("./register.controller");
 
 async function main() {
   const controller = new RegisterController();
