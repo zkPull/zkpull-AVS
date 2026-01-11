@@ -1,3 +1,12 @@
+```
+        _    ____       _ _    ___                       _                  __     ____  
+  ____ | | _|  _ \ _   _| | |  / _ \ _ __   ___ _ __ __ _| |_ ___  _ __     / \   \ \  / / ___
+ |_  / | |/ / |_) | | | | | | | | | | '_ \ / _ \ '__/ _` | __/ _ \| '__|   / _ \   \ \/ / / __|
+  / /  |   <|  __/| |_| | | | | |_| | |_) |  __/ | | (_| | || (_) | |     / ___ \   \  /  \__ \
+ /___| |_|\_\_|    \__,_|_|_|  \___/| .__/ \___|_|  \__,_|\__\___/|_|    /_/   \_\   \/   |___/
+                                    |_|                                                          
+```
+
 # zkTLS AVS Operator Bot
 
 Automated validator bot for zkPull protocol using AVS (Actively Validated Service) by EigenLayer.
@@ -278,12 +287,6 @@ sudo systemctl status zkpull-operator
    - Set up alerts for failures
    - Monitor stake balance
    - Track validation success rate
-
-## Support
-
-- Discord: [zkPull Community](https://discord.gg/zkpull)
-- Email: operators@zkpull.io
-- Documentation: https://docs.zkpull.io/operators
 
 ## License
 
